@@ -26,9 +26,6 @@ package co.elastic.apm.agent.lucee;
 
 import co.elastic.apm.agent.bci.TracerAwareInstrumentation;
 import co.elastic.apm.agent.bci.VisibleForAdvice;
-import co.elastic.apm.agent.bci.HelperClassManager;
-import co.elastic.apm.agent.http.client.HttpClientHelper;
-import co.elastic.apm.agent.impl.ElasticApmTracer;
 import co.elastic.apm.agent.impl.transaction.AbstractSpan;
 import co.elastic.apm.agent.impl.transaction.Span;
 import co.elastic.apm.agent.impl.transaction.AbstractHeaderGetter;
@@ -37,7 +34,6 @@ import co.elastic.apm.agent.impl.transaction.TextHeaderSetter;
 import co.elastic.apm.agent.impl.transaction.Transaction;
 import net.bytebuddy.asm.Advice;
 import net.bytebuddy.description.method.MethodDescription;
-import net.bytebuddy.implementation.bytecode.assign.Assigner;
 import net.bytebuddy.description.type.TypeDescription;
 import net.bytebuddy.matcher.ElementMatcher;
 
@@ -51,9 +47,7 @@ import static net.bytebuddy.matcher.ElementMatchers.returns;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.sql.Array;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 import lucee.runtime.type.Struct;

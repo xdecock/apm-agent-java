@@ -24,12 +24,8 @@
  */
 package co.elastic.apm.agent.lucee;
 
-import co.elastic.apm.agent.bci.HelperClassManager;
-
 import co.elastic.apm.agent.impl.transaction.TextHeaderSetter;
 
-import lucee.commons.net.http.Header;
-import org.apache.http.HttpMessage;
 import org.apache.http.client.methods.HttpUriRequest;
 
 @SuppressWarnings("unused")

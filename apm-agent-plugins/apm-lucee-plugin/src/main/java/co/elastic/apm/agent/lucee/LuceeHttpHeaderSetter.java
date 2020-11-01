@@ -29,7 +29,6 @@ import co.elastic.apm.agent.bci.HelperClassManager;
 import co.elastic.apm.agent.impl.transaction.TextHeaderSetter;
 import lucee.runtime.tag.Http;
 import lucee.runtime.tag.HttpParamBean;
-import java.util.ArrayList;
 
 
 @SuppressWarnings("unused")
