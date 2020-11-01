@@ -25,7 +25,6 @@
 package co.elastic.apm.agent.lucee;
 
 import co.elastic.apm.agent.bci.TracerAwareInstrumentation;
-import co.elastic.apm.agent.bci.VisibleForAdvice;
 import co.elastic.apm.agent.http.client.HttpClientHelper;
 import co.elastic.apm.agent.impl.transaction.Span;
 import co.elastic.apm.agent.impl.transaction.AbstractSpan;
@@ -73,7 +72,6 @@ public class LuceeHttpInstrumentation extends TracerAwareInstrumentation {
     public Class<?> getAdviceClass() {
         return CfHTTPAdvice.class;
     }
-    @VisibleForAdvice
     public static class CfHTTPAdvice {
 
         @Advice.OnMethodEnter(suppress = Throwable.class, inline = false)

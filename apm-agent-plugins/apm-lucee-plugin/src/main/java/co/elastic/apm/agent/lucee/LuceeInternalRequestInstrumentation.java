@@ -25,7 +25,6 @@
 package co.elastic.apm.agent.lucee;
 
 import co.elastic.apm.agent.bci.TracerAwareInstrumentation;
-import co.elastic.apm.agent.bci.VisibleForAdvice;
 import co.elastic.apm.agent.impl.transaction.AbstractSpan;
 import co.elastic.apm.agent.impl.transaction.Span;
 import co.elastic.apm.agent.impl.transaction.AbstractHeaderGetter;
@@ -86,7 +85,6 @@ public class LuceeInternalRequestInstrumentation extends TracerAwareInstrumentat
     public Class<?> getAdviceClass() {
         return CfInternalRequestAdvice.class;
     }
-    @VisibleForAdvice
     public static class CfInternalRequestAdvice {
 
         @Advice.OnMethodEnter(suppress = Throwable.class, inline = false)
