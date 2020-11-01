@@ -26,15 +26,10 @@ package co.elastic.apm.agent.lucee;
 
 import co.elastic.apm.agent.bci.TracerAwareInstrumentation;
 import co.elastic.apm.agent.bci.VisibleForAdvice;
-import co.elastic.apm.agent.bci.HelperClassManager;
-import co.elastic.apm.agent.http.client.HttpClientHelper;
-import co.elastic.apm.agent.impl.ElasticApmTracer;
 import co.elastic.apm.agent.impl.transaction.AbstractSpan;
 import co.elastic.apm.agent.impl.transaction.Span;
-import co.elastic.apm.agent.impl.transaction.TextHeaderSetter;
 import net.bytebuddy.asm.Advice;
 import net.bytebuddy.description.method.MethodDescription;
-import net.bytebuddy.implementation.bytecode.assign.Assigner;
 import net.bytebuddy.description.type.TypeDescription;
 import net.bytebuddy.matcher.ElementMatcher;
 
@@ -99,7 +94,14 @@ public class LuceeCreateObjectInstrumentation extends TracerAwareInstrumentation
                                           @Advice.Thrown @Nullable Throwable t) {
             if (span != null) {
                 try {
-                    ((Span)span).captureException(t);
+                    if (span instanceof Span) {
+                        ((Span)span).captureException(t);
+                        final long endTime = ((Span)span).getTraceContext().getClock().getEpochMicros();
+                        long durationMicros = endTime - ((Span)span).getTimestamp();
+                        if (durationMicros<500) {
+                            ((Span)span).requestDiscarding();
+                        }
+                    }
                 } finally {
                     ((Span)span).deactivate().end();
                 }
