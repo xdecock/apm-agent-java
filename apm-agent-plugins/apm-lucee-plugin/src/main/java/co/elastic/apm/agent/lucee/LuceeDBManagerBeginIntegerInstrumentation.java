@@ -25,7 +25,6 @@
 package co.elastic.apm.agent.lucee;
 
 import co.elastic.apm.agent.bci.TracerAwareInstrumentation;
-import co.elastic.apm.agent.bci.VisibleForAdvice;
 import co.elastic.apm.agent.impl.transaction.AbstractSpan;
 import co.elastic.apm.agent.impl.transaction.Span;
 import net.bytebuddy.asm.Advice;
@@ -65,7 +64,6 @@ public class LuceeDBManagerBeginIntegerInstrumentation extends TracerAwareInstru
     public Class<?> getAdviceClass() {
         return CfDBMBeginIntegerAdvice.class;
     }
-    @VisibleForAdvice
     public static class CfDBMBeginIntegerAdvice {
 
         @Advice.OnMethodEnter(suppress = Throwable.class, inline = false)

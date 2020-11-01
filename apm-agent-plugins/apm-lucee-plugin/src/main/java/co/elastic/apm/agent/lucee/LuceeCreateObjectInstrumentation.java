@@ -25,7 +25,6 @@
 package co.elastic.apm.agent.lucee;
 
 import co.elastic.apm.agent.bci.TracerAwareInstrumentation;
-import co.elastic.apm.agent.bci.VisibleForAdvice;
 import co.elastic.apm.agent.impl.transaction.AbstractSpan;
 import co.elastic.apm.agent.impl.transaction.Span;
 import net.bytebuddy.asm.Advice;
@@ -65,7 +64,6 @@ public class LuceeCreateObjectInstrumentation extends TracerAwareInstrumentation
     public Class<?> getAdviceClass() {
         return CfJavaLoadAdvice.class;
     }
-    @VisibleForAdvice
     public static class CfJavaLoadAdvice {
 
         @Advice.OnMethodEnter(suppress = Throwable.class, inline = false)
